@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f1f4f9">
+<meta name="description" content="Echoes versus transponder replies on a PPI scope.">
+<title>Primary &amp; Secondary Radar · DGCA Prep</title>
+<script>(function(){var t=null;try{t=localStorage.getItem('dgca.theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+canvas{width:100%;display:block;border-radius:8px;background:var(--map)}.pair{display:flex;gap:10px;flex-wrap:wrap}.pair svg{flex:1 1 260px;max-width:340px;margin:auto;display:block}.ind{width:100%;max-width:340px;display:block;margin:0 auto}select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:5px 10px;width:100%}input[type=checkbox]{accent-color:var(--acc)}.ctl label.ck{justify-content:flex-start;gap:8px;color:var(--ink)}
+.zt{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:6px}.zt button{width:34px;height:34px;padding:0;font-size:17px;background:var(--panel);border-radius:8px}.zl{position:absolute;left:10px;bottom:8px;font-size:12px;color:var(--mute);pointer-events:none}
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="site-hdr"><div class="hdr-in">
+<a class="brand" href="index.html" aria-label="DGCA Prep home"><svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--c-nav)"/><stop offset="1" stop-color="var(--c-reg)"/></linearGradient></defs><rect width="40" height="40" rx="13" fill="url(#bg1)"/><path d="M10.5 21.2L29.5 11.5 24.2 29.2 19.8 22.4z" fill="#fff" opacity=".95"/><path d="M19.8 22.4L29.5 11.5" stroke="url(#bg1)" stroke-width="1.6" stroke-linecap="round"/></svg><b>DGCA Prep</b></a>
+<nav class="nav" aria-label="Main">
+<a href="practice.html">Practice</a><a href="practice.html?mode=test">Mock tests</a><a href="flashcards.html">Flashcards</a>
+<div class="dd on"><button type="button" aria-haspopup="true" aria-expanded="false">Simulators <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-menu"><a href="altimeter.html"><span class="ic" style="color:var(--acc)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12V6.5"/><path d="M12 12l4 2.3"/><path d="M12 3.6v1.4M12 19v1.4M3.6 12H5M19 12h1.4"/></svg></span><span><b>Altimeter Setting</b><small>QNH, QFE and STD: see how a wrong setting or cold air shifts true altitude.</small></span></a><a href="vor.html"><span class="ic" style="color:var(--acc)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 5l2.2 7H9.8z" fill="currentColor"/><path d="M12 19l-2.2-7h4.4z"/></svg></span><span><b>VOR</b><small>Radials, OBS, TO/FROM and the CDI.</small></span></a><a href="hold.html"><span class="ic" style="color:var(--acc)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="10" rx="5"/><path d="M12 7l-2.2-2.2M12 7l-2.2 2.2"/></svg></span><span><b>Holding Patterns</b><small>Random clearance, entry sector and a trail that turns red when you stray.</small></span></a><a href="rnav.html"><span class="ic" style="color:var(--acc)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="18" r="1.8"/><circle cx="11" cy="9" r="1.8"/><circle cx="19" cy="6" r="1.8"/><path d="M6.3 16.6l3.6-6.2M12.7 8.5l4.6-1.8" stroke-dasharray="2.5 2.5"/></svg></span><span><b>RNAV / RNP</b><small>Fly a waypoint route, watch cross-track error against the RNP limit.</small></span></a><a href="metar.html"><span class="ic" style="color:var(--acc)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5h10a4 4 0 0 0 .6-7.95A5.6 5.6 0 0 0 7 9.4 4.6 4.6 0 0 0 7 18.5z"/></svg></span><span><b>METAR / TAF Decoder</b><small>Paste or generate a report, decode every group, then quiz yourself.</small></span></a><a href="radar.html" class=on><span class="ic" style="color:var(--acc)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.8"/><path d="M12 12l6.2-4.6"/><circle cx="16.3" cy="15.2" r="1" fill="currentColor"/></svg></span><span><b>Primary & Secondary Radar</b><small>Echoes versus transponder replies on a PPI scope.</small></span></a></div></div>
+</nav>
+<div class="hdr-r"><button class="sbtn" type="button" data-search aria-label="Search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><span class="lbl">Search</span><kbd>/</kbd></button>
+<button class="ibtn" id="themeBtn" type="button" aria-label="Toggle light and dark mode" title="Light / dark"><span class="th-moon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2z"/></svg></span><span class="th-sun"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></span></button></div>
+</div></div>
+<div class="ov" id="ov" role="dialog" aria-label="Search"><div class="ov-box"><input type="search" placeholder="Search topics, simulators, pages…" aria-label="Search"><div class="ov-res"></div></div></div>
+<main class="wrap"><div class="pg-t"><h1><span style="color:var(--acc);vertical-align:-4px;margin-right:6px"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.8"/><path d="M12 12l6.2-4.6"/><circle cx="16.3" cy="15.2" r="1" fill="currentColor"/></svg></span>Primary & secondary radar</h1><p>PPI scope: echoes versus transponder replies. Fictional traffic.</p></div>
+<div class="grid"><div class="box"><canvas id="map" style="aspect-ratio:1/1;max-height:88vh"></canvas>
+<p class="hint">Primary radar (PSR) transmits a pulse and listens for the echo, so it sees every reflective object (aircraft, ground clutter, weather) but only gives range and bearing. Secondary radar (SSR) interrogates transponders, which reply with identity (Mode A), altitude (Mode C) and more, but it cannot see aircraft without a working transponder. Green squares are echoes; amber boxes are SSR replies with data blocks. Three aircraft here have no transponder, so only PSR shows them.</p></div><div class="box"><div class="read"><div><small>PSR contacts</small><b id="qP">--</b></div><div><small>SSR replies</small><b id="qS">--</b></div><div><small>Primary only</small><b id="qO">--</b></div><div><small>Range</small><b id="qR">--</b></div><div><small>Rotation</small><b id="qT">--</b></div><div><small>Radar type</small><b id="qM" style="font-size:13px;line-height:26px">--</b></div><div><small>Antenna az</small><b id="qA">--</b></div><div><small>Clutter</small><b id="qN">--</b></div></div><div class="ctl"><label>Radar type</label><select id="mode"><option value="0">Primary (PSR) only</option><option value="1">Secondary (SSR) only</option><option value="2">Combined PSR + SSR</option></select></div><div class="ctl"><label class="ck"><input type="checkbox" id="clut"> Ground clutter and weather</label></div><div class="ctl"><label>Rotation period <output id="o_per" data-u=" s"></output></label><input type="range" id="per" min="4" max="15" step="1" value="8" style="width:100%"></div><div class="ctl"><label>Range <output id="o_rngs" data-u=" nm"></output></label><input type="range" id="rngs" min="20" max="100" step="10" value="60" style="width:100%"></div><div class="ctl"><label>Time compression <output id="o_ts" data-u="×"></output></label><input type="range" id="ts" min="1" max="30" step="1" value="5" style="width:100%"></div><div class="btns"><button id="pause">Pause</button><button id="reset">Reset</button><button id="rnd">New random traffic</button></div></div></div>
+<script>
+const $=id=>document.getElementById(id),n360=a=>((a%360)+360)%360,n180=a=>{a=n360(a);return a>180?a-360:a},rad=d=>d*Math.PI/180,cl=(v,a,b)=>Math.max(a,Math.min(b,v)),pad=v=>String(Math.round(n360(v))%360).padStart(3,'0');
+const cssv=()=>{const cs=getComputedStyle(document.documentElement);return k=>cs.getPropertyValue(k).trim()};
+const T=(id,v,c)=>{const e=$(id);e.textContent=v;e.style.color=c||''};
+const turn=(h,t,sd)=>{const d=n180(t-h),s=3*sd;return n360(Math.abs(d)<=s?t:h+Math.sign(d)*s)};
+function zoomify(cv,ctx0,o){const z={k:1,x:0,y:0,moved:false},P=new Map();let pd=0,lb=null,fb=null;const setFo=v=>{z.fo=v;if(fb){fb.style.background=v?'var(--acc)':'var(--panel)';fb.style.color=v?'#fff':''}};
+const ctx=new Proxy(ctx0,{get(t,k){if(k==='__z')return z.k;if(k==='__f')return(x,y)=>{z.fp=[x,y]};if(k==='clearRect')return apply;if(k==='setLineDash')return a=>t.setLineDash(a.map(x=>x/z.k));const v=t[k];return typeof v==='function'?v.bind(t):v},
+set(t,k,v){if(k==='lineWidth')v=v/z.k;else if(k==='font')v=String(v).replace(/(\d+(?:\.\d+)?)px/,(m,n)=>(n/z.k)+'px');t[k]=v;return true}});
+function apply(){const d=devicePixelRatio||1,k=z.k;if(z.fo&&z.fp&&k>1){z.x=-k*(z.fp[0]-o.W/2);z.y=-k*(z.fp[1]-o.H/2);clamp()}ctx0.setTransform(d,0,0,d,0,0);ctx0.clearRect(0,0,o.W,o.H);ctx0.setTransform(d*k,0,0,d*k,d*(o.W/2*(1-k)+z.x),d*(o.H/2*(1-k)+z.y));if(lb)lb.textContent=k>1.01?'×'+k.toFixed(1)+' · drag to pan · double-click to reset':'scroll or pinch to zoom'}
+function clamp(){const mx=o.W/2*(z.k-1),my=o.H/2*(z.k-1);z.x=Math.max(-mx,Math.min(mx,z.x));z.y=Math.max(-my,Math.min(my,z.y));if(z.k<=1.001){z.k=1;z.x=z.y=0}cv.style.touchAction=z.k>1?'none':'pan-y';cv.style.cursor=z.k>1?'grab':''}
+function zoomAt(px,py,f){const k0=z.k,k=Math.max(1,Math.min(12,k0*f)),r=k/k0,cx=o.W/2,cy=o.H/2;z.x=px-cx-r*(px-cx-z.x);z.y=py-cy-r*(py-cy-z.y);z.k=k;clamp()}
+const rc=()=>cv.getBoundingClientRect(),reset=()=>{z.k=1;clamp()},dist=()=>{const[a,b]=[...P.values()];return Math.hypot(a.x-b.x,a.y-b.y)};
+if(cv.parentNode&&document.createElement){const w=document.createElement('div');w.style.position='relative';cv.parentNode.insertBefore(w,cv);w.appendChild(cv);const tb=document.createElement('div');tb.className='zt';
+[['+','Zoom in',1.4],['−','Zoom out',1/1.4],['⟲','Reset view',0]].concat(cv.dataset.fo?[['⌖','Follow the aircraft',-1]]:[]).forEach(([t,ti,f])=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.title=ti;if(f===-1)fb=b;b.onclick=()=>f===-1?setFo(!z.fo):f?zoomAt(o.W/2,o.H/2,f):reset();tb.appendChild(b)});
+w.appendChild(tb);lb=document.createElement('span');lb.className='zl';w.appendChild(lb)}
+cv.addEventListener('wheel',e=>{e.preventDefault();const r=rc();zoomAt(e.clientX-r.left,e.clientY-r.top,Math.exp(-e.deltaY*.0015))},{passive:false});
+cv.addEventListener('pointerdown',e=>{if(cv.setPointerCapture)cv.setPointerCapture(e.pointerId);P.set(e.pointerId,{x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY});z.moved=false;if(P.size===2)pd=dist()});
+cv.addEventListener('pointermove',e=>{const p=P.get(e.pointerId);if(!p)return;
+if(P.size===2){p.x=e.clientX;p.y=e.clientY;const d=dist(),[a,b]=[...P.values()],r=rc();zoomAt((a.x+b.x)/2-r.left,(a.y+b.y)/2-r.top,d/pd);pd=d;z.moved=true;return}
+if(Math.hypot(e.clientX-p.sx,e.clientY-p.sy)>5)z.moved=true;if(z.k>1){if(z.moved&&z.fo)setFo(false);z.x+=e.clientX-p.x;z.y+=e.clientY-p.y;clamp()}p.x=e.clientX;p.y=e.clientY});
+['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,e=>P.delete(e.pointerId)));
+cv.addEventListener('dblclick',reset);
+window.__zs=window.__zs||[];window.__zs.push(z);window.__zp=window.__zp||{zoomAt,o};
+if(!window.__zk){window.__zk=1;addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;const p=window.__zp,c=p.o;
+if(e.key==='+'||e.key==='=')p.zoomAt(c.W/2,c.H/2,1.4);else if(e.key==='-')p.zoomAt(c.W/2,c.H/2,1/1.4);else if(e.key==='0')p.zoomAt(c.W/2,c.H/2,1e-9)})}
+return{ctx,z,zoomAt}}
+function C(id){const cv=$(id),ctx0=cv.getContext('2d'),o={cv,W:0,H:0,fit(){const d=devicePixelRatio||1;o.W=cv.clientWidth;o.H=cv.clientHeight;cv.width=o.W*d;cv.height=o.H*d;ctx0.setTransform(d,0,0,d,0,0)}};
+o.fit();const zz=cv.dataset.nz?null:zoomify(cv,ctx0,o);o.ctx=zz?zz.ctx:ctx0;if(zz){o.z=zz.z;o.zoomAt=zz.zoomAt}addEventListener('resize',o.fit);return o}
+function ac(ctx,x,y,h,c){if(ctx.__f)ctx.__f(x,y);ctx.save();ctx.translate(x,y);ctx.rotate(rad(h));const k=1/(ctx.__z||1);ctx.scale(k,k);ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(0,-11);ctx.lineTo(7,9);ctx.lineTo(0,5);ctx.lineTo(-7,9);ctx.closePath();ctx.fill();ctx.restore()}
+const syncOut=()=>document.querySelectorAll('output').forEach(o=>{const v=S[o.id.slice(2)];o.textContent=(o.dataset.p?pad(v):v)+(o.dataset.u||'')});
+let S,D,K;
+function wire(keys,reset){K=[...document.querySelectorAll('input[type=range]')].map(e=>e.id);
+K.forEach(k=>$(k).addEventListener('input',e=>S[k]=+e.target.value));
+const nudge=(k,d)=>{const el=$(k);S[k]=el.dataset.w?n360(Math.round(S[k])+d):cl(S[k]+d,+el.min,+el.max);el.value=S[k]};
+document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{const[k,d]=b.dataset.d.split(':');nudge(k,+d)});
+$('pause').onclick=()=>{if(S.stop)return;S.paused=!S.paused;$('pause').textContent=S.paused?'Resume':'Pause'};
+$('reset').onclick=()=>{Object.assign(S,D,{paused:false,stop:false,trail:[]});K.forEach(k=>$(k).value=S[k]);$('pause').textContent='Pause';reset&&reset()};
+addEventListener('keydown',e=>{if(e.target.tagName==='SELECT')return;const m=keys[e.key];if(m){nudge(...m);e.preventDefault()}
+if(e.key===' '&&e.target.tagName!=='BUTTON'){$('pause').click();e.preventDefault()}})}
+function run(step,draw){let last=performance.now();(function f(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(!S.paused)step(dt*S.ts);draw();requestAnimationFrame(f)})(last)}
+function live(f){K=[...document.querySelectorAll('input[type=range]')].map(e=>e.id);S={};
+K.forEach(k=>{S[k]=+$(k).value;$(k).addEventListener('input',e=>{S[k]=+e.target.value;f()})});
+document.querySelectorAll('select').forEach(e=>{S[e.id]=+e.value;e.addEventListener('change',()=>{S[e.id]=+e.value;f()})});
+document.querySelectorAll('input[type=checkbox]').forEach(e=>{S[e.id]=e.checked;e.addEventListener('change',()=>{S[e.id]=e.checked;f()})});
+document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{const[k,d]=b.dataset.d.split(':'),el=$(k);S[k]=el.dataset.w?n360(S[k]+ +d):cl(S[k]+ +d,+el.min,+el.max);el.value=S[k];f()});
+addEventListener('resize',f);f()}
+function arr(ctx,x1,y1,x2,y2,c,w){ctx.strokeStyle=ctx.fillStyle=c;ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();const a=Math.atan2(y2-y1,x2-x1);ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-12*Math.cos(a-.4),y2-12*Math.sin(a-.4));ctx.lineTo(x2-12*Math.cos(a+.4),y2-12*Math.sin(a+.4));ctx.fill()}
+function plane(ctx,x,y,c){ctx.save();ctx.translate(x,y);const k=1/(ctx.__z||1);ctx.scale(k,k);ctx.beginPath();ctx.moveTo(11,0);ctx.lineTo(-9,-6);ctx.lineTo(-4,0);ctx.lineTo(-9,6);ctx.closePath();ctx.fillStyle=c;ctx.fill();ctx.restore()}
+
+D={ts:5,per:8,rngs:60};
+S={...D,paused:false,stop:false,trail:[],sw:0,T:0,dets:[],tg:[],cl:[],mode:2,clut:true};
+const M=C('map');
+function mk(){const r=Math.random,A=['AIC','IGO','VTA','UAE','SEJ','BAW','SIA','QTR','JAI','AXB'],n=7+Math.floor(r()*6),no=2+Math.floor(r()*3),oc=()=>Math.floor(r()*8);S.tg=[];
+for(let i=0;i<n;i++){const tx=i>=no,d=8+r()*50,b=r()*360;S.tg.push({x:Math.sin(rad(b))*d,y:Math.cos(rad(b))*d,hdg:r()*360,spd:tx?220+r()*220:60+r()*100,cs:tx?A[Math.floor(r()*A.length)]+(100+Math.floor(r()*900)):'',sq:tx?[oc(),oc(),oc(),oc()].join(''):'',fl:tx?60+Math.floor(r()*34)*10:0,tx,rcs:.6+r()*.4})}
+S.cl=[];const gr=8+r()*8;for(let i=0;i<70;i++){const d=r()*gr,b=r()*360;S.cl.push({x:Math.sin(rad(b))*d,y:Math.cos(rad(b))*d,t:'c'})}
+const wx=(r()-.5)*70,wy=(r()-.5)*70,wr=5+r()*7;for(let i=0;i<120;i++){const d=Math.sqrt(r())*wr,b=r()*6.283;S.cl.push({x:wx+Math.cos(b)*d,y:wy+Math.sin(b)*d,t:'w'})}
+S.dets=[];S.sw=0;S.T=0}
+function step(sd){const w0=S.sw;S.sw=(S.sw+360/S.per*sd)%360;S.T+=sd;
+S.tg.forEach(t=>{t.x+=Math.sin(rad(t.hdg))*t.spd/3600*sd;t.y+=Math.cos(rad(t.hdg))*t.spd/3600*sd;if(Math.hypot(t.x,t.y)>S.rngs)t.hdg=n360(Math.atan2(-t.x,-t.y)*180/Math.PI+(Math.random()-.5)*60)});
+const span=n360(S.sw-w0),hit=(x,y)=>{const o=n360(Math.atan2(x,y)*180/Math.PI-w0);return o>0&&o<=span};
+S.tg.forEach(t=>{if(Math.hypot(t.x,t.y)<S.rngs&&hit(t.x,t.y)){if(S.mode!==1&&Math.random()<t.rcs)S.dets.push({x:t.x,y:t.y,t:S.T,k:'p',tx:t.tx});if(S.mode!==0&&t.tx)S.dets.push({x:t.x,y:t.y,t:S.T,k:'s',cs:t.cs,sq:t.sq,fl:t.fl})}});
+if(S.clut&&S.mode!==1)S.cl.forEach(c=>{if(hit(c.x,c.y)&&Math.random()<.7)S.dets.push({x:c.x,y:c.y,t:S.T,k:c.t})});
+S.dets=S.dets.filter(d=>S.T-d.t<S.per*1.05)}
+function ui(){const n=k=>S.dets.filter(d=>d.k===k).length;
+T('qP',n('p'));T('qS',n('s'));T('qO',S.dets.filter(d=>d.k==='p'&&!d.tx).length);T('qR',S.rngs+' nm');T('qT',S.per+' s / rev');T('qM',['PSR only','SSR only','PSR + SSR'][S.mode]);T('qA',pad(S.sw)+'°');T('qN',S.clut?'on':'off');syncOut()}
+function draw(){const v=cssv(),{ctx,W,H}=M,R=Math.min(W,H)/2*.94,sc=R/S.rngs,cx=W/2,cy=H/2;ctx.clearRect(0,0,W,H);
+ctx.save();ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.fillStyle=v('--card');ctx.fill();ctx.clip();
+ctx.font='11px Nunito,system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineWidth=1;ctx.strokeStyle='#245c3d';ctx.fillStyle='#4f9d73';
+const st=S.rngs>60?20:10;for(let r=st;r<=S.rngs;r+=st){ctx.beginPath();ctx.arc(cx,cy,r*sc,0,7);ctx.stroke();ctx.fillText(r,cx+r*sc*.71+8,cy-r*sc*.71)}
+for(let a=0;a<360;a+=30){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.sin(rad(a))*R,cy-Math.cos(rad(a))*R);ctx.stroke()}
+for(let i=0;i<26;i++){const a=rad(S.sw-i*1.4);ctx.globalAlpha=(1-i/26)*.4;ctx.strokeStyle='#51cf66';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.sin(a)*R,cy-Math.cos(a)*R);ctx.stroke()}
+S.dets.forEach(d=>{const al=Math.max(0,1-(S.T-d.t)/(S.per*1.05)),x=cx+d.x*sc,y=cy-d.y*sc;ctx.globalAlpha=al;
+if(d.k==='p'){ctx.fillStyle='#51cf66';ctx.fillRect(x-3,y-3,6,6)}else if(d.k==='c'){ctx.fillStyle='#2fb36d';ctx.fillRect(x-1,y-1,3,3)}else if(d.k==='w'){ctx.fillStyle='#4dabf7';ctx.fillRect(x-1.5,y-1.5,3,3)}
+else{ctx.strokeStyle=ctx.fillStyle='#ffa94d';ctx.lineWidth=1.5;ctx.strokeRect(x-6,y-6,12,12);ctx.textAlign='left';ctx.fillText(d.cs,x+10,y-6);ctx.fillText('FL'+d.fl+' '+d.sq,x+10,y+7);ctx.textAlign='center'}});
+ctx.globalAlpha=1;ctx.restore();ctx.strokeStyle=v('--line');ctx.lineWidth=2;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.stroke()}
+$('mode').value='2';$('clut').checked=true;$('mode').onchange=e=>S.mode=+e.target.value;$('clut').onchange=e=>S.clut=e.target.checked;
+$('rnd').onclick=()=>$('reset').click();wire({},mk);mk();run(step,()=>{ui();draw()});
+</script>
+
+<div class="tie"><p><b>Revise what you just saw.</b> <span class="mute">Practise the matching DGCA questions or flip through flashcards.</span></p><div class="cta"><a class="btn" href="practice.html?sub=reg&topic=reg-air-traffic-services">Practise questions</a><a class="btn soft" href="flashcards.html?sub=reg&topic=reg-air-traffic-services">Flashcards</a></div></div></main>
+<footer class="ft"><div class="wrap"><span>DGCA Prep · practice, flashcards and simulators for the Indian CPL / ATPL ground exams.</span><span>Study aid only. Always confirm against current DGCA and ICAO publications.</span></div></footer>
+<script src="search-index.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
